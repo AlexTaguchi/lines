@@ -15,6 +15,9 @@ class Segment:
         self._wixi2 = 0
         self._wi = 0
 
+    def getLength(self):
+        return len(self._points)
+
     def appendPoint(self, p):
         self._points.append(p)
         self._wixiyi += p.w * p.x * p.y
@@ -65,7 +68,7 @@ class Segment:
         wixi = self._wixi + w*x
         wiyi = self._wiyi + w*y
         wixi2 = self._wixi2 + w*x*x
-        wi = self_wi + w
+        wi = self._wi + w
 
         a = (wixiyi - wixi*wiyi/wi)/(wixi2 - wixi**2/wi)
         b = (wiyi - a * wixi)/wi
@@ -74,7 +77,7 @@ class Segment:
     def evalRSS(self, p):
         new_a, new_b = self.evalPoint(p)
         rss = self.calcRSS(new_a, new_b)
-        rss += p.w * (p.y - a * p.x - b)**2
+        rss += p.w * (p.y - self.a * p.x - self.b)**2
         return rss
         
 

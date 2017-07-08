@@ -20,11 +20,16 @@ class Lines:
         params = []
         for s in self._segments:
             a,b = s.a, s.b
-            params.append((a,b))
+            sz = s.getLength()
+            params.append((a,b,sz))
         return params
 
     def set_penalty(self, p):
         self.penalty = p
+
+    def classify(self, points):
+        for p in points:
+            self.addPoint(p)
     
     def addPoint(self,p):
         if not self._segments:
@@ -44,12 +49,12 @@ class Lines:
                 new_err = diff_err
                 belong_to = i
 
-        if new_err < penalty and belong_to > -1:
+        if new_err < self.penalty and belong_to > -1:
             self._segments[belong_to].appendPoint(p)
             self._score += new_err
         else:
             s = Segment()
             s.appendPoint(p)
-            self._segments.append(p)
-            self._score += penalty
+            self._segments.append(s)
+            self._score += self.penalty
         
