@@ -11,12 +11,14 @@ class Lines:
     def __init__(self, penalty=1.0):
         self._segments = []
         self._score = 0
-        self.penalty = 1.0  # penalty for add a new segment
+        self.penalty = penalty  # penalty for add a new segment
 
     def get_score(self):
+        """get score for fitting. Smaller number is preferred"""
         return self._score
 
     def get_coefficients(self):
+        """ return tuples of a,b, and size"""
         params = []
         for s in self._segments:
             a,b = s.a, s.b
@@ -25,13 +27,16 @@ class Lines:
         return params
 
     def set_penalty(self, p):
+        """ update penalty for adding a new line"""
         self.penalty = p
 
     def classify(self, points):
+        """ classify points into corresponding lines"""
         for p in points:
             self.addPoint(p)
     
     def addPoint(self,p):
+        """ classify a point to existing lines, or create a new line(Segment)"""
         if not self._segments:
             s = Segment()
             s.appendPoint(p)
