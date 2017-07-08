@@ -34,10 +34,10 @@ plt.show()
 # example of two lines
 points = []
 
-xs, ys = random_line(2,2,0.2,size=40)
+xs, ys = random_line(2,2,0.15,size=40)
 for x, y in zip(xs,ys):
     points.append(Point(x,y,1.0))
-xs, ys = random_line(1,2,0.3,size=40)
+xs, ys = random_line(1,2,0.12,size=40)
 for x, y in zip(xs,ys):
     points.append(Point(x,y,1.0))
 
@@ -63,6 +63,7 @@ for a,b,s in params:
     plt.plot(total_xs_np, a*total_xs_np + b, "-", 
              label=("%.4f * x + %.4f" % (a,b)))
 plt.legend()
+#plt.savefig("data/lines.png")
 plt.show()
 
 
