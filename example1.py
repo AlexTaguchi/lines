@@ -56,7 +56,8 @@ for p in points:
 
 total_xs_np = np.array(total_xs)
 total_ys_np = np.array(total_ys)
-fig = plt.figure(figsize = (8,6))
+
+fig = plt.figure(figsize = (4,3))
 plt.plot(total_xs, total_ys, "b.")
 colors = ['r','g','b','k','y']
 for a,b,s in params:
