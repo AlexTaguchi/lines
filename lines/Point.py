@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 class Point:
     """
     A point is composed of x, y and weight

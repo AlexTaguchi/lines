@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from lines.Segment import Segment
-from lines.Point import Point
 import sys
+
 
 class Lines:
     """
@@ -21,10 +21,13 @@ class Lines:
         """ return tuples of a,b, and size"""
         params = []
         for s in self._segments:
-            a,b = s.a, s.b
+            a, b = s.a, s.b
             sz = s.getLength()
-            params.append((a,b,sz))
+            params.append((a, b, sz))
         return params
+
+    def number_of_lines(self):
+        return len(self._segments)
 
     def set_penalty(self, p):
         """ update penalty for adding a new line"""
@@ -34,18 +37,20 @@ class Lines:
         """ classify points into corresponding lines"""
         for p in points:
             self.addPoint(p)
-    
-    def addPoint(self,p):
-        """ classify a point to existing lines, or create a new line(Segment)"""
-        if len(self._segments)<1:
+
+    def addPoint(self, p):
+        """ classify a point to existing lines,
+            or create a new line(Segment)
+        """
+        if len(self._segments) < 1:
             s = Segment()
             s.appendPoint(p)
             self._segments.append(s)
             return
-            
-        new_err = sys.float_info.max # initial value
-        belong_to = -1 
-        
+
+        new_err = sys.float_info.max  # initial value
+        belong_to = -1
+
         for i, s in enumerate(self._segments):
             original_err = s.calcRSS(s.a, s.b)
             potential_err = s.evalRSS(p)
@@ -62,4 +67,3 @@ class Lines:
             s.appendPoint(p)
             self._segments.append(s)
             self._score += self.penalty
-        

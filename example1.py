@@ -34,10 +34,10 @@ plt.show()
 # example of two lines
 points = []
 
-xs, ys = random_line(2,3,0.1,size=20)
+xs, ys = random_line(2,2,0.2,size=40)
 for x, y in zip(xs,ys):
     points.append(Point(x,y,1.0))
-xs, ys = random_line(1,5,0.1,size=20)
+xs, ys = random_line(1,2,0.3,size=40)
 for x, y in zip(xs,ys):
     points.append(Point(x,y,1.0))
 
@@ -58,8 +58,11 @@ total_xs_np = np.array(total_xs)
 total_ys_np = np.array(total_ys)
 fig = plt.figure(figsize = (8,6))
 plt.plot(total_xs, total_ys, "b.")
+colors = ['r','g','b','k','y']
 for a,b,s in params:
-    plt.plot(total_xs_np, a*total_xs_np + b, "-")
+    plt.plot(total_xs_np, a*total_xs_np + b, "-", 
+             label=("%.4f * x + %.4f" % (a,b)))
+plt.legend()
 plt.show()
 
 
