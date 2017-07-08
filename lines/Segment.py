@@ -42,6 +42,9 @@ class Segment:
             float: residual sum of squares
         """
         rss = 0
+        if len(self._points) < 2:
+            return rss
+
         for p in self._points:
             rss += p.w * (p.y - a * p.x - b)**2
 
@@ -75,6 +78,8 @@ class Segment:
         return (a,b)
 
     def evalRSS(self, p):
+        if len(self._points) < 2:
+            return self._rss
         new_a, new_b = self.evalPoint(p)
         rss = self.calcRSS(new_a, new_b)
         rss += p.w * (p.y - self.a * p.x - self.b)**2
