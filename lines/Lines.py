@@ -37,7 +37,7 @@ class Lines:
     
     def addPoint(self,p):
         """ classify a point to existing lines, or create a new line(Segment)"""
-        if len(self._segments)<2:
+        if len(self._segments)<1:
             s = Segment()
             s.appendPoint(p)
             self._segments.append(s)

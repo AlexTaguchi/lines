@@ -3,6 +3,8 @@
 import numpy as np
 from lines.Point import Point
 
+class EvalPointError(ValueError): pass
+
 class Segment:
     def __init__(self):
         self.a = 0  # y = a.x + b
@@ -19,6 +21,7 @@ class Segment:
         return len(self._points)
 
     def appendPoint(self, p):
+        """append point to the segment, update parameters for the line function"""
         self._points.append(p)
         self._wixiyi += p.w * p.x * p.y
         self._wixi += p.w * p.x
@@ -26,9 +29,15 @@ class Segment:
         self._wixi2 += p.w * p.x * p.x
         self._wi += p.w
         if len(self._points)>1:
-            self.a = (self._wixiyi - self._wixi*self._wiyi/self._wi)/(self._wixi2 \
+            # if points are aligned with exactly the same x, line is vertical
+            # a and b would be infinity
+            if self._wixi2 == self._wixi**2/self._wi:
+                self.a = float("inf")
+                self.b = float("inf")
+            else:
+                self.a = (self._wixiyi - self._wixi*self._wiyi/self._wi)/(self._wixi2 \
                     - self._wixi**2/self._wi)
-            self.b = (self._wiyi - self.a * self._wixi)/self._wi
+                self.b = (self._wiyi - self.a * self._wixi)/self._wi
             self._rss = self.calcRSS(self.a, self.b)
 
     def calcRSS(self, a, b):
@@ -45,6 +54,18 @@ class Segment:
         if len(self._points) < 2:
             return rss
 
+        if self.a == float("inf") or self.b == float("inf"):
+            # in case when y is a vertical line, independent of x
+            avg_x = 0
+            for p in self._points:
+                avg_x += p.x * p.w
+            avg_x /= float(len(self._points)) # weighted average of x
+
+            for p in self._points:
+                rss += p.w * (p.x - avg_x)**2
+            return rss
+            
+
         for p in self._points:
             rss += p.w * (p.y - a * p.x - b)**2
 
@@ -60,7 +81,7 @@ class Segment:
             (a,b): a tuple for slope and intercept for fitted line y=a.x+b
         """
         if not self._points:
-            raise ValueError("""Cannot calculate slope 
+            raise EvalPointError("""Cannot calculate slope 
                         and intercept with a single point.
                       """)
         x = p.x
@@ -73,6 +94,10 @@ class Segment:
         wixi2 = self._wixi2 + w*x*x
         wi = self._wi + w
 
+        if wixi2 == wixi**2/wi:
+            a = float("inf")
+            b = float("inf")
+            return (a,b)
         a = (wixiyi - wixi*wiyi/wi)/(wixi2 - wixi**2/wi)
         b = (wiyi - a * wixi)/wi
         return (a,b)
@@ -84,5 +109,8 @@ class Segment:
         rss = self.calcRSS(new_a, new_b)
         rss += p.w * (p.y - self.a * p.x - self.b)**2
         return rss
+
+    def getPoints(self):
+        return self._points
         
 
