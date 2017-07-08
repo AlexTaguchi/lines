@@ -10,10 +10,12 @@ from lines.Point import Point
 import matplotlib.pyplot as plt
 
 
-def random_line(m, b, sigma, size=10):
+def random_line(a, b, sigma, size=10):
+    """random_line() generate random points arround y=a*x+b,
+    with normal distribution defined using sigma"""
     xdata = np.linspace(-1,1,size)
     errors = scipy.stats.norm.rvs(loc=0,scale=sigma, size=size)
-    ydata = m*xdata + b + errors
+    ydata = a*xdata + b + errors
     return xdata, ydata
 
 # example of a single line
@@ -41,7 +43,10 @@ xs, ys = random_line(1,2,0.12,size=40)
 for x, y in zip(xs,ys):
     points.append(Point(x,y,1.0))
 
-lines = Lines(1.0)
+# The argument penalty defines the trend that the classifier would 
+# avoid establishing a new line. The higher the value, the less
+# the number of lines it will generate.
+lines = Lines(penalty=1.0)  # user needs to tune penalty
 lines.classify(points)
 params = lines.get_coefficients()
 for a, b, s in params:

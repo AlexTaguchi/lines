@@ -30,7 +30,9 @@ class Lines:
         return len(self._segments)
 
     def set_penalty(self, p):
-        """ update penalty for adding a new line"""
+        """ update penalty for adding a new line
+            The higher the value, the less likely a new line.
+        """
         self.penalty = p
 
     def classify(self, points):
