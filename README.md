@@ -27,7 +27,9 @@ Demonstration are shown in example1.py and example2.py.
 ![Predicted Lines.](data/two_lines_identified.png)
 
 The data was generated using two lines: 
+
 y = 2 x + 2.9 
+
 y = 1 x + 3.0
 
 noise was added to mimic real cases.
@@ -36,21 +38,24 @@ noise was added to mimic real cases.
 **example2.py** shows the identification of three crossing lines:
 ---------------------------------------------------------
 
-![Scatter Plot of the Data.](data/two_lines_points.png)
+![Scatter Plot of the Data.](data/three_lines_points.png)
 
 + Prediction:
 
-![Predicted Lines.](data/two_lines_identified.png)
+![Predicted Lines.](data/two_lines_points_prediction.png)
 
 The data was generated using **three** lines: 
+
 y = 2 x + 2.9 
+
 y = 1 x + 3.0
+
 y = -0.1 x + 3.1
 
 Discussion
 ==========
 
-+  Because RSS was used as a metric for predicting the lines. The features close to the center of the line would have better accuracy (in this case intercepts).
++  Because RSS was used as a metric for predicting the lines. The prediction for features close to the center of the distribution of the points would have better accuracy (in this case intercepts).
 
 +  There would be difficulty identifying points in the crossing region.
 

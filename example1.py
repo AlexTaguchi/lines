@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 # First import sample data generated from two lines
 data = np.loadtxt("data/xys_2lines.txt", delimiter=",")
 # visualize the data
-fig = plt.figure(figsize=(8,6))
+fig = plt.figure(figsize=(6,4))
 plt.plot(data[:,0], data[:,1], 'k.')
 #plt.savefig("data/two_lines_points_plots.png")
 plt.show()
@@ -33,7 +33,7 @@ for a, b, s in params:
 print("score: %.4f" % lines.get_score())
 
 # visualize the lines
-fig = plt.figure(figsize = (8,6))
+fig = plt.figure(figsize = (6,4))
 colors = ['r','g','b','k','y']
 for i in range(lines.number_of_lines()):
     s = lines.get_line(i)
