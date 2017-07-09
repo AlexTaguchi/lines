@@ -42,7 +42,7 @@ noise was added to mimic real cases.
 
 + Prediction:
 
-![Predicted Lines.](data/two_lines_points_prediction.png)
+![Predicted Lines.](data/three_lines_points_prediction.png)
 
 The data was generated using **three** lines: 
 
