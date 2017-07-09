@@ -1,2 +1,2 @@
-__all__ = ['Segment', 'Point']
+__all__ = ['Lines', 'Segment', 'Point']
 version = 0.1
