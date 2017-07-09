@@ -63,7 +63,3 @@ Discussion
 
 +  User needs to tune parameter 'penalty' when using the classifier.
 
-+  RSS was used as a metric for predicting the lines. The closer the points to the center of a line, the smaller the uncertainty of the corresponding prediction.
-
-+  There would be difficulty identifying points in the crossing region.
-
