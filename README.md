@@ -15,7 +15,7 @@ However, when the set of points potentially belong to multiple lines, it would b
 Usage
 =====
 
-Demonstration are shown in example1.py and example2.py.
+Demonstration are shown in example1.py and example2.py. In both examples, one needs to specify the *penalty* for adding a new line. However, one do **not** need to set the number of lines the classifier is looking for. The classifier is capable to identify the correct number of lines in both cases.
 
 **example1.py** shows the identification of two crossing lines:
 ---------------------------------------------------------
@@ -33,6 +33,8 @@ y = 2 x + 2.9
 y = 1 x + 3.0
 
 noise was added to mimic real cases.
+
+The classifier is able to identify two lines for these points.
 
 
 **example2.py** shows the identification of three crossing lines:
@@ -52,8 +54,14 @@ y = 1 x + 3.0
 
 y = -0.1 x + 3.1
 
+The classifier is able to identify three lines for these points.
+
 Discussion
 ==========
+
++  The classifier is able to handle cases where lines are crossing.
+
++  User needs to tune parameter 'penalty' when using the classifier.
 
 +  RSS was used as a metric for predicting the lines. The closer the points to the center of a line, the smaller the uncertainty of the corresponding prediction.
 
