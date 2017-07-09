@@ -3,6 +3,9 @@
 from lines.Segment import Segment
 import sys
 
+class LineIndexOutOfRange(ValueError):
+    pass
+
 
 class Lines:
     """
@@ -25,6 +28,14 @@ class Lines:
             sz = s.getLength()
             params.append((a, b, sz))
         return params
+
+    def get_line(self, i):
+        """return the indexed line"""
+        if i >= len(self._segments):
+            raise LineIndexOutOfRange("index too large")
+
+        return self._segments[i]
+        
 
     def number_of_lines(self):
         return len(self._segments)

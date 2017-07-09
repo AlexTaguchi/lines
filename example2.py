@@ -7,14 +7,14 @@ from lines.Lines import Lines
 from lines.Point import Point
 import matplotlib.pyplot as plt
 
-# example of two lines
+# example of three lines
 
-# First import sample data generated from two lines
-data = np.loadtxt("data/xys_2lines.txt", delimiter=",")
+# First import sample data generated from three lines
+data = np.loadtxt("data/xys_3lines.txt", delimiter=",")
 # visualize the data
 fig = plt.figure(figsize=(8,6))
 plt.plot(data[:,0], data[:,1], 'k.')
-#plt.savefig("data/two_lines_points_plots.png")
+#plt.savefig("data/three_lines_points.png")
 plt.show()
 
 # prepare data for prediction
@@ -51,7 +51,7 @@ for i in range(lines.number_of_lines()):
              label=("%.4f * x + %.4f" % (a,b)))
     plt.plot(xs, ys, ".", color = colors[i])
 plt.legend()
-#plt.savefig("data/two_lines_identified.png")
+#plt.savefig("data/three_lines_points_prediction.png")
 plt.show()
 
 
