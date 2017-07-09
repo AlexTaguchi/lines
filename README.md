@@ -55,7 +55,7 @@ y = -0.1 x + 3.1
 Discussion
 ==========
 
-+  Because RSS was used as a metric for predicting the lines. The prediction for features close to the center of the distribution of the points would have better accuracy (in this case intercepts).
++  RSS was used as a metric for predicting the lines. The closer the points to the center of a line, the smaller the uncertainty of the corresponding prediction.
 
 +  There would be difficulty identifying points in the crossing region.
 
