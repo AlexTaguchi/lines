@@ -58,7 +58,7 @@ class Segment:
 
         if self.a == float("inf") or self.b == float("inf"):
             # in case when y is a vertical line, independent of x
-            avg_x = 0
+            avg_x = 0.0
             for p in self._points:
                 avg_x += p.x * p.w
             avg_x /= float(len(self._points))  # weighted average of x
@@ -99,8 +99,8 @@ class Segment:
             a = float("inf")
             b = float("inf")
             return (a, b)
-        a = (wixiyi - wixi*wiyi/wi)/(wixi2 - wixi**2/wi)
-        b = (wiyi - a * wixi)/wi
+        a = (wixiyi - wixi*wiyi/wi)/(wixi2 - wixi**2/float(wi))
+        b = (wiyi - a * wixi)/float(wi)
         return (a, b)
 
     def evalRSS(self, p):
