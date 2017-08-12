@@ -7,15 +7,15 @@ class EvalPointError(ValueError):
 
 class Segment:
     def __init__(self):
-        self.a = 0  # y = a.x + b
-        self.b = 0
+        self.a = 0.0  # y = a.x + b
+        self.b = 0.0
         self._points = []
-        self._rss = 0  # Residual sum of squares
-        self._wixiyi = 0
-        self._wixi = 0
-        self._wiyi = 0
-        self._wixi2 = 0
-        self._wi = 0
+        self._rss = 0.0  # Residual sum of squares
+        self._wixiyi = 0.0
+        self._wixi = 0.0
+        self._wiyi = 0.0
+        self._wixi2 = 0.0
+        self._wi = 0.0
 
     def getLength(self):
         return len(self._points)
@@ -52,7 +52,7 @@ class Segment:
         Returns:
             float: residual sum of squares
         """
-        rss = 0
+        rss = 0.0
         if len(self._points) < 2:
             return rss
 
@@ -87,7 +87,7 @@ class Segment:
                       """)
         x = p.x
         y = p.y
-        w = p.w
+        w = float(p.w)
 
         wixiyi = self._wixiyi + w*x*y
         wixi = self._wixi + w*x
@@ -99,8 +99,8 @@ class Segment:
             a = float("inf")
             b = float("inf")
             return (a, b)
-        a = (wixiyi - wixi*wiyi/wi)/(wixi2 - wixi**2/float(wi))
-        b = (wiyi - a * wixi)/float(wi)
+        a = (wixiyi - wixi*wiyi/wi)/(wixi2 - wixi**2/wi)
+        b = (wiyi - a * wixi)/wi
         return (a, b)
 
     def evalRSS(self, p):
