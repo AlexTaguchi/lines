@@ -13,7 +13,7 @@ env:
     - SH=bash
     - PACKAGE_VERSION = "0.1.*"
 script: 
-    coverage run --source=lines pytest
+    coverage run --source=lines test_lines.py
 
 after_success:
     coveralls
