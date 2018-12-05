@@ -1,4 +1,4 @@
-# Lines
+# lines
 [![Build Status](https://travis-ci.org/cyang019/Lines.svg?branch=master)](https://travis-ci.org/cyang019/Lines)
 
 Identify multiple lines among a set of points.
